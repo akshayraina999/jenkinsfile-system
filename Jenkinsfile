@@ -1,9 +1,9 @@
 pipeline {
     agent any
     
-    triggers {
-    githubPush(branches: [[name:'master']])
-}
+//     triggers {
+//     githubPush(branches: [[name:'master']])
+// }
 
     environment {
         // Define variables as needed
