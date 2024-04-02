@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     triggers {
-        githubPush() // Trigger the pipeline on GitHub push events
-    }
+    githubPush(repo: 'akshayraina999/node-hello')
+}
 
     environment {
         // Define variables as needed
