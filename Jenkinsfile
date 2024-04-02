@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     triggers {
-    githubPush(branch: 'master')
+    githubPush(branches: [[name:'master']])
 }
 
     environment {
