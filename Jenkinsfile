@@ -8,6 +8,7 @@ pipeline {
     environment {
         // Define variables as needed
         BUILD_NUMBER = env.BUILD_NUMBER.toInteger()  // Get the build number
+	    
         TAG_VERSION = "${(BUILD_NUMBER / 20) + 1}.${BUILD_NUMBER % 20 ?: 20}" // Calculate tag version
         DOCKER_IMAGE_NAME = "mox-test:${TAG_VERSION}" // Set Docker image name with dynamic tag
         // DOCKER_IMAGE_NAME = "mox-test"
