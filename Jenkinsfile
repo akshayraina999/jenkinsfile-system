@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     triggers {
-    githubPush(repo: 'akshayraina999/node-hello')
+    githubPush(branch: 'master')
 }
 
     environment {
