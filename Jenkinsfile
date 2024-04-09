@@ -24,9 +24,6 @@ pipeline {
         MESSAGE_FAILURE = "❌ Build Failed: ${env.JOB_NAME} - ${env.BUILD_NUMBER}"
     }
 
-    // triggers {
-    //     pollSCM('* * * * *') // Poll every minute, you can adjust as needed
-    // }
 
     stages {
         // stage('Setup Node.js and npm') {
@@ -44,23 +41,24 @@ pipeline {
         // }
         
         stage('SonarQube analysis') {
-        environment {
-            scannerHome = tool 'sonar-server'
-        }
-        steps {
-            withSonarQubeEnv('sonar-server') {
-                sh '''
-                ${scannerHome}/bin/sonar-scanner \
-                -D sonar.projectKey=node-hello-test \
-                -D sonar.projectName=node-hello \
-                -D sonar.login=squ_463cdc7d9c383e75f4e79f75ff87d109ed25916c \
-                -D sonar.projectVersion=1.0 \
-                -D sonar.sources=. \
-                -D sonar.host.url=http://98.70.91.102:9000 \
-                -D sonar.test.inclusions=**/node_modules/**,/coverage/lcov-report/*,test/*.js
-                '''
-                }
+            environment {
+                scannerHome = tool 'sonar-server'
             }
+            steps {
+                withSonarQubeEnv('sonar-server') {
+                    sh '''
+                    ${scannerHome}/bin/sonar-scanner \
+                    -D sonar.projectKey=node-hello-test \
+                    -D sonar.projectName=node-hello \
+                    -D sonar.login=squ_463cdc7d9c383e75f4e79f75ff87d109ed25916c \
+                    -D sonar.projectVersion=1.0 \
+                    -D sonar.sources=. \
+                    -D sonar.host.url=http://98.70.91.102:9000 \
+                    -D sonar.test.inclusions=**/node_modules/**,/coverage/lcov-report/*,test/*.js
+                    '''
+                    }
+                }
+        }
             // steps {
             //     script {
             //         withSonarQubeEnv('sonar-server') {
@@ -163,5 +161,4 @@ pipeline {
 
 //                     }
 //                     }
-                }
 }
